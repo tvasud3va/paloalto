@@ -7,7 +7,7 @@ from infrastructure import weather, quotes
 
 def main():
     """Compile variables and pass into README"""
-    
+
     # Fetch weather information using the OpenWeather API for Palo Alto (or your specific location)
     (
         weather_dict,
@@ -72,7 +72,21 @@ def main():
     with open("README.md", "w+") as fh:
         fh.write(output_from_parsed_template)
 
-    return
+    # Generate markdown content
+    markdown_content = f"""
+    # Weather and Air Quality Report
+
+    - Current Temperature: {city_temperature}°C
+    - Sunrise Time: {sunrise_time}
+    - Sunset Time: {sunset_time}
+    - ...
+
+    Generated at: {current_date} {current_time_PST}
+    """
+
+    # Write the markdown content to a file
+    with open("output.md", "w") as md_file:
+        md_file.write(markdown_content)
 
 if __name__ == "__main__":
     # Execute the main function if the script is run as the main module
